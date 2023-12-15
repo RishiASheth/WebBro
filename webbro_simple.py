@@ -1,4 +1,14 @@
-# total_hours_wasted_here = 53
+# Dear programmer:
+# when i wrote this code,
+# only god and i knew how it worked.
+# Now, only god knows it!
+#
+# Therefore, if you are trying to optimize this routine
+# and it fails ( most surely ),
+# please increase this counter as a
+# warning for the next person:
+#
+# total_hours_wasted_here = 69
 
 import sys
 from PyQt5.QtCore import *
