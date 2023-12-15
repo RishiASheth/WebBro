@@ -1,13 +1,3 @@
-# Dear programmer:
-# when I wrote this code,
-# only god and I knew how it worked.
-# Now, only god knows it!
-#
-# Therefore, if you are trying to optimize
-# this routine and it fails ( most surely ),
-# please increase this counter as a
-# warning for the next person:
-#
 # total_hours_wasted_here = 53
 
 import sys
@@ -32,7 +22,7 @@ class MainWindow(QMainWindow):
         self.l1 = []
         self.search_engine = "brave"
         self.history = []
-        self.browser.urlChanged.connect(self.update_url)
+        self.history_box_visible = False
 
         icon_size = QSize(40, 40)  # Adjust the width and height as needed
         navbar.setIconSize(icon_size)
@@ -102,7 +92,7 @@ class MainWindow(QMainWindow):
 
         history_btn = QToolButton(self)
         history_btn.setText('History')
-        history_btn.setIcon(QIcon('history_icon.png'))  #Replace with whatever history icon you want
+        history_btn.setIcon(QIcon('history.png'))  #Replace with whatever history icon you want
         history_btn.clicked.connect(self.show_history)
         history_btn.setFixedSize(button_width, button_width)
         navbar.addWidget(history_btn)
@@ -112,7 +102,7 @@ class MainWindow(QMainWindow):
         self.history_box_widget.setFrameShape(QFrame.Box)
         self.history_box_widget.setFrameShadow(QFrame.Raised)
         self.history_box_widget.setLineWidth(2)
-        self.history_box_widget.setVisible(self.box_visible)
+        self.history_box_widget.setVisible(self.history_box_visible)
         self.history_box_widget.setStyleSheet("background-color: #404040; color: white;")
         self.history_box_layout = QVBoxLayout(self.history_box_widget)
         self.history_box_widget.setLayout(self.history_box_layout)
@@ -218,17 +208,43 @@ class MainWindow(QMainWindow):
                 url = url + "+" + i
             url = url + "&source=web"
             self.browser.setUrl(QUrl(url))
-
-        self.history.append(url)
+        
 
     def update_url(self, q):
         url = q.toString()
+        print(url)
         self.url_bar.setText(url)
         self.history.append(url)
+        
+
+    # def show_history(self):
+    #     self.settings_box_visible = not self.settings_box_visible
+    #     history_text = "\n".join(self.history)
+    #     msg_box = QMessageBox()
+    #     msg_box.setText(history_text)
+    #     msg_box.setStyleSheet("QMessageBox { background-color: lightblue; } QLabel { color: darkblue; }")
+    #     msg_box.setWindowTitle("Browsing History")
+    #     msg_box.exec_()
+    #     self.history_box_widget.setVisible(self.history_box_visible)
 
     def show_history(self):
+        self.history_box_visible = not self.history_box_visible
         history_text = "\n".join(self.history)
-        QMessageBox.information(self, "Browsing History", history_text)
+
+        while self.history_box_layout.count():
+            item = self.history_box_layout.takeAt(0)
+            widget = item.widget()
+            if widget:
+                widget.setParent(None)
+        # for item in range(0,len(self.history),2):
+        #     label = QLabel(self.history[item], self)
+        #     self.history_box_layout.addWidget(label)
+        for item in self.history:
+             label = QLabel(item, self)
+             self.history_box_layout.addWidget(label)
+        self.history_box_widget.setVisible(self.history_box_visible)
+
+
 
 
 app = QApplication(sys.argv)
