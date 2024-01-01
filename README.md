@@ -51,31 +51,3 @@ Provide a "Bookmark" option that users can click to save the current page to the
 Track and display a user's browsing history.
 Offer a "History" feature that allows users to view a list of recently visited websites. Clicking on an item in the history opens that page.
 
-## Work Distribution
-
-#### Rishi (PES2UG23CS479)
-
-- Coordinate the overall project
-- Implement settings window
-- Implement customization of search engines
-- Implement Bookmarking
-- Oversee the integration of different components.
-
-#### Rishabh (PES2UG23CSxxx)
-
-- Assist in History Tracking
-- Implement Password Manager functionality.
-- Assist in implementing settings window
-
-#### Rishil (PES2UG23CSxxx)
-
-- Assist in Bookmarking
-- Implement History tracking
-- Implement light and dark mode
-- Assist in Password managemer functionality
-
-#### Raghav (PES2UG23CSxxx)
-
-- Implement Text Bar for URL Input and Displaying Web Page Content.
-- Implementing Navigation Buttons and reload button.
-- Implement Home page customization.
