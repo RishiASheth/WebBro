@@ -9,6 +9,7 @@
 # warning for the next person:
 #
 # total_hours_wasted_here = 69
+# project by - @RishiASheth , @rtk5 , rishil , ritish
 
 import time
 import sys
